@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -29,7 +30,9 @@ public class Cliente implements Serializable
 	private String cpfOuCnpj;
 	private Integer tipo;
 
-	@OneToMany(mappedBy = "cliente")
+	// cascade = toda operação que modificar um cliente reflete em cascata nos
+	// endereços
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 
 	// substitui a implementação de classes simples, que só teriam um atributo
@@ -53,7 +56,7 @@ public class Cliente implements Serializable
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = tipo == null? null : tipo.getCod();
+		this.tipo = tipo == null ? null : tipo.getCod();
 	}
 
 	public Integer getId()
