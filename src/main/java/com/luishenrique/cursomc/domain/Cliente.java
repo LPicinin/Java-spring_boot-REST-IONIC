@@ -27,11 +27,14 @@ public class Cliente implements Serializable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	
+
 	@Column(unique = true)
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
+
+	@JsonIgnore
+	private String senha;
 
 	// cascade = toda operação que modificar um cliente reflete em cascata nos
 	// endereços
@@ -52,7 +55,7 @@ public class Cliente implements Serializable
 		super();
 	}
 
-	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo)
+	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo, String senha)
 	{
 		super();
 		this.id = id;
@@ -60,6 +63,7 @@ public class Cliente implements Serializable
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.tipo = tipo == null ? null : tipo.getCod();
+		this.senha = senha;
 	}
 
 	public Integer getId()
@@ -110,6 +114,16 @@ public class Cliente implements Serializable
 	public void setTipo(TipoCliente tipo)
 	{
 		this.tipo = tipo.getCod();
+	}
+
+	public String getSenha()
+	{
+		return senha;
+	}
+
+	public void setSenha(String senha)
+	{
+		this.senha = senha;
 	}
 
 	public List<Endereco> getEnderecos()

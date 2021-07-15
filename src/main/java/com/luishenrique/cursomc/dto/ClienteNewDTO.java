@@ -13,32 +13,35 @@ import com.luishenrique.cursomc.services.validation.ClienteInsert;
 public class ClienteNewDTO implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	
+
 	// Cliente
 	@NotEmpty(message = "Preenchimento obrigatório")
 	@Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
 	private String nome;
-	
+
 	@NotEmpty(message = "Preenchimento obrigatório")
 	@Email(message = "Email inválido")
 	private String email;
-	
+
 	@NotEmpty(message = "Preenchimento obrigatório")
 	private String cpfOuCnpj;
-	
+
 	private Integer tipo;
+
+	@NotEmpty(message = "Preenchimento obrigatório")
+	private String senha;
 
 	private Integer cidadeId;
 
 	// Endereço
 	@NotEmpty(message = "Preenchimento obrigatório")
 	private String logradouro;
-	
+
 	@NotEmpty(message = "Preenchimento obrigatório")
 	private String numero;
 	private String complemento;
 	private String bairro;
-	
+
 	@NotEmpty(message = "Preenchimento obrigatório")
 	private String cep;
 
@@ -91,6 +94,16 @@ public class ClienteNewDTO implements Serializable
 	public void setTipo(Integer tipo)
 	{
 		this.tipo = tipo;
+	}
+
+	public String getSenha()
+	{
+		return senha;
+	}
+
+	public void setSenha(String senha)
+	{
+		this.senha = senha;
 	}
 
 	public Integer getCidadeId()
