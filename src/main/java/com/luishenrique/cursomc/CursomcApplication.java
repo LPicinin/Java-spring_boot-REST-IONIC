@@ -16,7 +16,7 @@ public class CursomcApplication implements CommandLineRunner
 	@Override
 	public void run(String... args) throws Exception
 	{
-
+		
 	}
 //Banco temporario: http://localhost:8080/h2-console
 }
